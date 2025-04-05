@@ -1,14 +1,31 @@
 import axios from "axios";
 
-//getting the url
-const URL = "http://www.omdbapi.com/?t=avengers&apikey=5899199";
-
 export const DataFile = async () => {
+  const Trending = [
+    "Vincenzo",
+    "Vincenzo",
+    "Buried Hearts",
+    "Escape",
+    "Exhuma",
+  ];
+  const American = [
+    "Dune",
+    "Twisters",
+    "Mufasa",
+    "The Painter",
+    "The Beekeeper",
+  ];
+  const Korean = Trending.map(
+    (name) =>
+      `http://www.omdbapi.com/?t=${encodeURIComponent(name)}&apikey=5899199`
+  );
+  console.log(Korean);
+
   try {
-    const response = await axios.get(URL);
-    return response.data; // Updated to return the full response object
+    const responses = await Promise.all(Korean.map((url) => axios.get(url)));
+    return responses.map((response) => response.data);
   } catch (error) {
-    console.error("Error fetching GitHub users:", error);
+    console.error("Error fetching movie data:", error);
     return [];
   }
 };
