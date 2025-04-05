@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { fetchMovies } from "../Services/movieService";
+import React, { useState } from "react";
+import { fetchMovies } from "../Services/Searchdb";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -7,24 +7,26 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
-    if (!searchTerm.trim()) return;
-
     setLoading(true);
     try {
-      const results = await fetchMovies(searchTerm);
+      const results = await fetchMovies(searchTerm); // Pass as array
       setMovies(results);
+      if (results.length === 0) {
+        alert("No movies found. Try a different search term.");
+      }
     } catch (error) {
       console.error("Search error:", error);
+      alert("Failed to search movies. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div class="p-4">
+    <div class="p-4 bg-black">
       <div class="flex gap-2 mb-6">
         <input
-          class="h-10 w-64 px-4 rounded border-none outline-none"
+          class="h-10 w-64 px-4 rounded border-none outline-none flex justify-center align-center"
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -54,8 +56,8 @@ export default function Search() {
                 />
               )}
               <div class="p-4">
-                <h3 class="text-lg font-bold">{movie.Title}</h3>
-                <p class="text-gray-400">{movie.Year}</p>
+                <h3 class="text-lg font-bold text-white">{movie.Title}</h3>
+                <p class="text-white">{movie.Year}</p>
               </div>
             </div>
           ))}
