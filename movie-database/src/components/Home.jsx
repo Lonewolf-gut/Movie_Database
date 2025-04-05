@@ -8,6 +8,7 @@ import {
   fetchAmericanMovies,
 } from "../Services/movieService";
 import LoadingSpinner from "./LoadingSpinner";
+import front from "../assets/r.jpg";
 
 function Home() {
   const [koreanMovies, setKoreanMovies] = useState([]);
@@ -39,8 +40,10 @@ function Home() {
 
   return (
     <div>
-      <Navbar />
-      <div class="min-h-screen bg-[url('./assets/front.jpg')] text-white bg-cover bg-center bg-no-repeat"></div>
+      <div
+        class="min-h-screen bg-cover bg-center bg-no-repeat pt-48 pl-28  text-white"
+        style={{ backgroundImage: `url(${front})` }}
+      ></div>
 
       <Page data={koreanMovies} />
       <Americann data={americanMovies} />
