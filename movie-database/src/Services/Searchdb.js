@@ -8,6 +8,6 @@ export const fetchMovies = async (titles) => {
     `${BASE_URL}/?s=${encodeURIComponent(titles)}&apikey=${API_KEY}`
   );
   const another = values.data.Search;
-  console.log(another);
+
   return another;
 };

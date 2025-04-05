@@ -17,7 +17,7 @@ function Navbar() {
           <Link to="/search">Database</Link>
         </li>
         <li class="hover:text-red-500">
-          <Link to="/services">Detail</Link>
+          <Link to="/detail">Detail</Link>
         </li>
       </ul>
     </nav>

@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Page from "./Page";
 import Americann from "./Americann";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
 import {
   fetchKoreanMovies,
   fetchAmericanMovies,
@@ -43,7 +44,18 @@ function Home() {
       <div
         class="min-h-screen bg-cover bg-center bg-no-repeat pt-48 pl-28  text-white"
         style={{ backgroundImage: `url(${front})` }}
-      ></div>
+      >
+        <h1 class="text-5xl font-extrabold mb-4 text-red-500">🎬 MovieHub</h1>
+        <p class="text-xl mb-6 text-gray-300 text-center max-w-xl">
+          Discover thousands of movies, explore your favorites, and get detailed
+          info about cast, ratings, and more. Your ultimate movie destination.
+        </p>
+        <Link to="/search">
+          <button class="bg-red-600 hover:bg-red-700 transition-all px-6 py-3 rounded-lg text-lg font-semibold">
+            Start Exploring
+          </button>
+        </Link>
+      </div>
 
       <Page data={koreanMovies} />
       <Americann data={americanMovies} />
