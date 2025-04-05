@@ -1,37 +1,49 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Page from "./Page";
-import { DataFile } from "../Services/DataFile";
-import logo from "../assets/logo.png";
+import Americann from "./Americann";
+import Footer from "./Footer";
+import {
+  fetchKoreanMovies,
+  fetchAmericanMovies,
+} from "../Services/movieService";
+import LoadingSpinner from "./LoadingSpinner";
+
 function Home() {
-  const [data, setData] = useState(null);
+  const [koreanMovies, setKoreanMovies] = useState([]);
+  const [americanMovies, setAmericanMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await DataFile();
-      setData(result);
+      try {
+        setLoading(true);
+        const [korean, american] = await Promise.all([
+          fetchKoreanMovies(),
+          fetchAmericanMovies(),
+        ]);
+        setKoreanMovies(korean);
+        setAmericanMovies(american);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchData();
   }, []);
 
+  if (loading) return <LoadingSpinner />;
+  if (error) return <div className="text-red-500 text-center p-8">{error}</div>;
+
   return (
     <div>
       <Navbar />
-      <div class="min-h-screen bg-[url('/src/assets/r.jpg')] bg-t text-white bg-cover bg-no-repeat">
-        <div class=" flex justify-end h-full pt-48 pr-20">
-          <img
-            src={logo}
-            alt="Logo"
-            class="w-28 h-28 filter hue-rotate-10 animate-spin"
-            style={{
-              filter:
-                "brightness(0) saturate(30%) invert(17%) sepia(95%) saturate(2000%) hue-rotate(0deg)",
-            }}
-          />
-        </div>
-      </div>
+      <div class="min-h-screen bg-[url('./assets/front.jpg')] text-white bg-cover bg-center bg-no-repeat"></div>
 
-      <Page data={data} />
+      <Page data={koreanMovies} />
+      <Americann data={americanMovies} />
     </div>
   );
 }
