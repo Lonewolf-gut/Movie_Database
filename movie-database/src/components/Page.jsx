@@ -2,7 +2,7 @@ import React from "react";
 
 function Page({ data }) {
   return (
-    <div class="p-4 bg-black text-white">
+    <div class="p-4 bg-black text-white mt-0">
       <h1 class="text-2xl font-bold p-3 m-5 mt-14">Favorites</h1>
       <div class="flex flex-wrap gap-10 m-5">
         {data &&

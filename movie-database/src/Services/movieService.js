@@ -19,13 +19,7 @@ export const fetchMovies = async (titles) => {
 };
 
 export const fetchKoreanMovies = async () => {
-  const titles = [
-    "Vincenzo",
-    "Descendants of the sun",
-    "Buried Hearts",
-    "Escape",
-    "Exhuma",
-  ];
+  const titles = ["Vincenzo", "The Frog", "Buried Hearts", "Escape", "Exhuma"];
   return fetchMovies(titles);
 };
 

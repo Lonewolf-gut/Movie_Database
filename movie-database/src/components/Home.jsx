@@ -42,19 +42,24 @@ function Home() {
   return (
     <div>
       <div
-        class="min-h-screen bg-cover bg-center bg-no-repeat pt-48 pl-28  text-white"
+        class="lg:min-h-screen bg-cover bg-center bg-no-repeat pt-48 pl-28  text-white"
         style={{ backgroundImage: `url(${front})` }}
       >
-        <h1 class="text-5xl font-extrabold mb-4 text-red-500">🎬 MovieHub</h1>
-        <p class="text-xl mb-6 text-gray-300 text-center max-w-xl">
-          Discover thousands of movies, explore your favorites, and get detailed
-          info about cast, ratings, and more. Your ultimate movie destination.
-        </p>
-        <Link to="/search">
-          <button class="bg-red-600 hover:bg-red-700 transition-all px-6 py-3 rounded-lg text-lg font-semibold">
-            Start Exploring
-          </button>
-        </Link>
+        <div class="lg:pb-32 md:pt-44 sm:pr-5 mt-24">
+          <h1 class="lg:text-5xl font-extrabold mb-4 text-red-500 sm: text-2">
+            🎬 MovieHub
+          </h1>
+          <p class="text-xl mb-6 text-gray-300 text-center max-w-xl">
+            Discover thousands of movies, explore your favorites, and get
+            detailed info about cast, ratings, and more. Your ultimate movie
+            destination.
+          </p>
+          <Link to="/search">
+            <button class="bg-red-600 hover:bg-red-700 transition-all px-6 py-3 rounded-lg text-lg font-semibold">
+              Start Exploring
+            </button>
+          </Link>
+        </div>
       </div>
 
       <Page data={koreanMovies} />
